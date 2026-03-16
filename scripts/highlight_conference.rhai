@@ -1,20 +1,47 @@
-import "scripts/config" as cfg;
-let comment = params[0];
+let top_conf = [
+    "icdar",
+    "cvpr",
+    "iccv",
+    "eccv",
+    "acl",
+    "emnlp",
+    "naacl",
+    "iclr",
+    "neurips",
+    "icml"
+];
 
-let conferences_rg = Regex(`(?P<key>(${cfg::conferences_rg}))`);
+let mid_conf = [
+    "wacv",
+    "aaai",
+    "ijcai",
+    "acmmm",
+    "bmvc",
+    "coling",
+    "findings of acl",
+    "findings of emnlp"
+];
 
-if comment != () {
-    let conference = conferences_rg.find(comment);
-    let conference = conference.text;
-
-    let conference = if conference != "" {
-        "<span class=\"chip\">" + conference + "</span>"
-    } else {
-        ""
-    };
-
-    conference
-} else {
-    ""
+fn contains_any(text, keywords) {
+    for kw in keywords {
+        if text.contains(kw) {
+            return true;
+        }
+    }
+    false
 }
 
+fn main(conf) {
+
+    let c = conf.to_lower();
+
+    if contains_any(c, top_conf) {
+        return "🏆";
+    }
+
+    if contains_any(c, mid_conf) {
+        return "📌";
+    }
+
+    ""
+}

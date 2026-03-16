@@ -1,19 +1,65 @@
-import "scripts/config" as cfg;
+let core_keywords = [
+    "icdar",
+    "ocr",
+    "document ai",
+    "document understanding",
+    "document intelligence",
+    "document parsing",
+    "document analysis",
+    "layout analysis",
+    "layout understanding",
+    "layoutlm",
+    "docvqa",
+    "chartqa",
+    "reading order",
+    "reading sequence",
+    "scene text",
+    "text detection",
+    "text recognition",
+    "table recognition",
+    "table understanding",
+    "chart understanding",
+    "formula recognition",
+    "page parsing",
+    "visual document"
+];
 
-let title = params[0];
-let authors = params[1];
+let related_keywords = [
+    "document",
+    "layout",
+    "table",
+    "chart",
+    "formula",
+    "multimodal",
+    "vision-language",
+    "vlm",
+    "mllm",
+    "long document",
+    "structured document",
+    "page",
+    "pdf"
+];
 
-title.trim();
+fn contains_any(text, keywords) {
+    for kw in keywords {
+        if text.contains(kw) {
+            return true;
+        }
+    }
+    false
+}
 
-let title_rg = RegexCaseInsensitive(`(?P<key>(${cfg::title_rg}))`);
-let authors_rg = RegexCaseInsensitive(`(?P<key>(${cfg::authors_rg}))`);
-let title = title_rg.replace_all(title,"<span class=\"highlight-title\">$key</span>");
+fn main(title) {
 
-let authors = authors.map(|v|authors_rg.is_match(v));
-let title = if true in authors {
-    "<span class=\"highlight-title\">★</span> " + title
-} else {
-    "☆ " + title
-};
+    let t = title.to_lower();
 
-title
+    if contains_any(t, core_keywords) {
+        return "🔥DocAI";
+    }
+
+    if contains_any(t, related_keywords) {
+        return "⭐Doc";
+    }
+
+    ""
+}

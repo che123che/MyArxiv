@@ -1,8 +1,42 @@
-import "scripts/config" as cfg;
-let authors = params[0];
+let org_keywords = [
+    "google",
+    "deepmind",
+    "openai",
+    "meta",
+    "anthropic",
+    "microsoft",
+    "nvidia",
+    "adobe",
+    "allen",
+    "mit",
+    "stanford",
+    "berkeley",
+    "cmu",
+    "tsinghua",
+    "peking",
+    "zhejiang",
+    "fudan",
+    "sjtu",
+    "ntu",
+    "nus"
+];
 
-let authors_rg = RegexCaseInsensitive(`(?P<key>(${cfg::authors_rg}))`);
-let authors = authors.map(|v|authors_rg.replace_all(v,"<span class=\"highlight-author\">$key</span>"));
+fn contains_any(text, keywords) {
+    for kw in keywords {
+        if text.contains(kw) {
+            return true;
+        }
+    }
+    false
+}
 
-let start = authors.shift();
-authors.reduce(|sum, v| sum + ", " + v, start)
+fn main(author) {
+
+    let a = author.to_lower();
+
+    if contains_any(a, org_keywords) {
+        return "👤";
+    }
+
+    ""
+}

@@ -1,31 +1,46 @@
-site_title = "MyArxiv"
-limit_days = 7
+site_title = "MyArxiv - AI & Document Intelligence"
+limit_days = 14
 cache_url = "https://che123che.github.io/MyArxiv/cache.json"
 
 [[sources]]
-limit = 150
-category = "cs.CL"
-title = "Computation and Language"
-
-[[sources]]
-limit = 150
+limit = 220
 category = "cs.CV"
-title = "Computer Vision and Pattern Recognition"
+title = "Document AI / OCR / Layout / Scene Text / Vision"
 
 [[sources]]
-limit = 150
-category = "cs.IR"
-title = "Information Retrieval"
+limit = 180
+category = "cs.CL"
+title = "Document Understanding / NLP / Long Text"
 
 [[sources]]
-limit = 150
+limit = 180
 category = "cs.LG"
-title = "Machine Learning"
+title = "Machine Learning / Foundation Models"
 
 [[sources]]
 limit = 150
+category = "cs.AI"
+title = "Artificial Intelligence / Reasoning / Agents"
+
+[[sources]]
+limit = 140
 category = "cs.MM"
-title = "Multimedia"
+title = "Multimodal / Vision-Language / VLM"
+
+[[sources]]
+limit = 120
+category = "cs.IR"
+title = "Information Retrieval / RAG / Search"
+
+[[sources]]
+limit = 120
+category = "stat.ML"
+title = "Statistical Machine Learning"
+
+[[sources]]
+limit = 120
+category = "eess.IV"
+title = "Image Processing / OCR Preprocessing"
 
 [scripts]
 highlight_title = "scripts/highlight_title.rhai"
