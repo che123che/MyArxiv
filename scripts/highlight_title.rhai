@@ -1,65 +1,31 @@
-let core_keywords = [
+let keywords = [
     "icdar",
     "ocr",
-    "document ai",
-    "document understanding",
-    "document intelligence",
-    "document parsing",
-    "document analysis",
-    "layout analysis",
-    "layout understanding",
-    "layoutlm",
+    "document",
+    "layout",
     "docvqa",
-    "chartqa",
     "reading order",
-    "reading sequence",
     "scene text",
     "text detection",
     "text recognition",
     "table recognition",
-    "table understanding",
-    "chart understanding",
-    "formula recognition",
-    "page parsing",
-    "visual document"
-];
-
-let related_keywords = [
-    "document",
-    "layout",
-    "table",
     "chart",
     "formula",
     "multimodal",
     "vision-language",
     "vlm",
-    "mllm",
-    "long document",
-    "structured document",
-    "page",
-    "pdf"
+    "mllm"
 ];
-
-fn contains_any(text, keywords) {
-    for kw in keywords {
-        if text.contains(kw) {
-            return true;
-        }
-    }
-    false
-}
 
 fn main(title) {
 
     let t = title.to_lower();
 
-    if contains_any(t, core_keywords) {
-        return "🔥DocAI";
+    for kw in keywords {
+        if t.contains(kw) {
+            return "<span style='color:#ff6b6b;font-weight:bold'>🔥</span>";
+        }
     }
 
-    if contains_any(t, related_keywords) {
-        return "⭐Doc";
-    }
-
-    ""
+    return "";
 }
