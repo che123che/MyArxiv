@@ -1,31 +1,19 @@
-let keywords = [
-    "icdar",
-    "ocr",
-    "document",
-    "layout",
-    "docvqa",
-    "reading order",
-    "scene text",
-    "text detection",
-    "text recognition",
-    "table recognition",
-    "chart",
-    "formula",
-    "multimodal",
-    "vision-language",
-    "vlm",
-    "mllm"
-];
+import "scripts/config" as cfg;
 
-fn main(title) {
+let title = params[0];
+let authors = params[1];
 
-    let t = title.to_lower();
+title.trim();
 
-    for kw in keywords {
-        if t.contains(kw) {
-            return "<span style='color:#ff6b6b;font-weight:bold'>🔥</span>";
-        }
-    }
+let title_rg = RegexCaseInsensitive(`(?P<key>${cfg::title_rg})`);
+let authors_rg = RegexCaseInsensitive(`(?P<key>${cfg::authors_rg})`);
 
-    return "";
-}
+let title = title_rg.replace_all(title, "<span style='color:#ff6b6b;font-weight:700'>$key</span>");
+let authors = authors.map(|v| authors_rg.is_match(v));
+let title = if true in authors {
+    "★ " + title
+} else {
+    "☆ " + title
+};
+
+title

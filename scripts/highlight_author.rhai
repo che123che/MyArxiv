@@ -1,42 +1,8 @@
-let org_keywords = [
-    "google",
-    "deepmind",
-    "openai",
-    "meta",
-    "anthropic",
-    "microsoft",
-    "nvidia",
-    "adobe",
-    "allen",
-    "mit",
-    "stanford",
-    "berkeley",
-    "cmu",
-    "tsinghua",
-    "peking",
-    "zhejiang",
-    "fudan",
-    "sjtu",
-    "ntu",
-    "nus"
-];
+import "scripts/config" as cfg;
 
-fn contains_any(text, keywords) {
-    for kw in keywords {
-        if text.contains(kw) {
-            return true;
-        }
-    }
-    false
-}
+let authors = params[0];
+let authors_rg = RegexCaseInsensitive(`(?P<key>${cfg::authors_rg})`);
+let authors = authors.map(|v| authors_rg.replace_all(v, "<span style='color:#ffd166;font-weight:700'>$key</span>"));
 
-fn main(author) {
-
-    let a = author.to_lower();
-
-    if contains_any(a, org_keywords) {
-        return "👤";
-    }
-
-    ""
-}
+let start = authors.shift();
+authors.reduce(|sum, v| sum + ", " + v, start)

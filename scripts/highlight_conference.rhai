@@ -1,47 +1,17 @@
-let top_conf = [
-    "icdar",
-    "cvpr",
-    "iccv",
-    "eccv",
-    "acl",
-    "emnlp",
-    "naacl",
-    "iclr",
-    "neurips",
-    "icml"
-];
+import "scripts/config" as cfg;
 
-let mid_conf = [
-    "wacv",
-    "aaai",
-    "ijcai",
-    "acmmm",
-    "bmvc",
-    "coling",
-    "findings of acl",
-    "findings of emnlp"
-];
+let comment = params[0];
+let conferences_rg = Regex(`(?P<key>${cfg::conferences_rg})`);
 
-fn contains_any(text, keywords) {
-    for kw in keywords {
-        if text.contains(kw) {
-            return true;
-        }
-    }
-    false
-}
-
-fn main(conf) {
-
-    let c = conf.to_lower();
-
-    if contains_any(c, top_conf) {
-        return "🏆";
-    }
-
-    if contains_any(c, mid_conf) {
-        return "📌";
-    }
-
+if comment != () {
+    let conference = conferences_rg.find(comment);
+    let conference = conference.text;
+    let conference = if conference != "" {
+        "<span style='color:#80ed99;font-weight:700'>" + conference + "</span>"
+    } else {
+        ""
+    };
+    conference
+} else {
     ""
 }
