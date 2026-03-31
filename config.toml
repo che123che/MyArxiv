@@ -1,6 +1,6 @@
 site_title = "MyArxiv - AI & Document Intelligence"
 limit_days = 14
-cache_url = "https://che123che.github.io/MyArxiv/cache.json"
+
 
 [[sources]]
 limit = 220
